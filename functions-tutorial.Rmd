@@ -15,11 +15,15 @@ knitr::opts_chunk$set(echo = TRUE)
   
 ```{r}
 
+source("convert.R") #add own functions to work inside local environments
+
 airtemps <- c(212, 100, 32, 64, 0, 20)
 
 #airtemp1 <- (airtemps[1]-32)*5/9
 
 airtemp_all <- (airtemps-32)*5/9
+
+new_fahr_to_celsius(airtemps)
 
 ```
 
@@ -42,6 +46,7 @@ celsius_temps
 # Write a function to go C to F
 
 ```{r}
+
 celsius_to_fahr <- function(celsius){
   fahr <- celsius*9/5+32
   return (fahr)
