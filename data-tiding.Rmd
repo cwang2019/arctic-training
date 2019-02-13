@@ -150,6 +150,21 @@ head(dates_unite)
 
 ```
 
+```{r}
+library(stringr)
+
+month <- c("5", "05", "03")
+
+str_pad(month, 2, side = "left", pad ="0")
+
+```
+
+```{r}
+write.csv(catch_clean, "catch_clean.csv", row.names=F)
+
+```
+
+
 
 
 
