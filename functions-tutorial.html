@@ -193,15 +193,45 @@ $(document).ready(function () {
 <ul>
 <li>Convert to C</li>
 </ul>
+<pre class="r"><code>airtemps &lt;- c(212, 100, 32, 64, 0, 20)
+
+#airtemp1 &lt;- (airtemps[1]-32)*5/9
+
+airtemp_all &lt;- (airtemps-32)*5/9</code></pre>
 </div>
 <div id="write-a-function-to-do-that" class="section level1">
 <h1>Write a function to do that</h1>
+<pre class="r"><code>fahr_to_celsius &lt;- function (fahr){
+  celsius &lt;- (fahr-32)*5/9
+  return(celsius)
+}
+
+celsius_temps &lt;- fahr_to_celsius(airtemps)
+celsius_temps</code></pre>
+<pre><code>## [1] 100.000000  37.777778   0.000000  17.777778 -17.777778  -6.666667</code></pre>
 </div>
 <div id="write-a-function-to-go-c-to-f" class="section level1">
 <h1>Write a function to go C to F</h1>
+<pre class="r"><code>celsius_to_fahr &lt;- function(celsius){
+  fahr &lt;- celsius*9/5+32
+  return (fahr)
+}
+
+fahr_temp_new &lt;- celsius_to_fahr(celsius_temps)
+fahr_temp_new == airtemps</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
 </div>
 <div id="show-how-to-document-functions" class="section level1">
 <h1>Show how to document Functions</h1>
+<pre class="r"><code>#' Converts numeric temperature data from degrees Fahrenheit to degree Celsius
+#'
+#' @param fahr the value in Fahrenheit to be converted
+#' @return the converted value in Celsius
+
+fahr_to_celsius &lt;- function (fahr){
+  celsius &lt;- (fahr-32)*5/9
+  return(celsius)
+}</code></pre>
 </div>
 
 
