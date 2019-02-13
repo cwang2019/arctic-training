@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, warning = FALSE, message = FALSE}
 library(dplyr)
 library(tidyr)
+library(DT)
+library(knitr)
 
 # to call stats filter - stats::filter()
 
@@ -28,7 +30,10 @@ library(tidyr)
 ```{r}
 catch_original <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/df35b.302.1", method = "libcurl"),
                     stringsAsFactors = FALSE)
-head(catch_original)
+#head(catch_original)
+datatable(catch_original)
+kable(catch_original)
+
 ```
 
 Remove the `all` and `notesRegCode` columns using `select`
