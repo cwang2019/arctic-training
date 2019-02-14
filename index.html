@@ -188,13 +188,9 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>library(dplyr)
-library(tidyr)
-library(ggplot2)</code></pre>
 <div id="reformat-the-data-for-plotting" class="section level1">
 <h1>Reformat the data for plotting</h1>
 <p>Alaska Department of Fish and Game, Division of Commercial Fisheries. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. <a href="doi:10.5063/F1S46Q6M" class="uri">doi:10.5063/F1S46Q6M</a>.</p>
-<pre class="r"><code>esc &lt;- read.csv(url(&quot;https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e&quot;, method = &quot;libcurl&quot;), stringsAsFactors = FALSE)</code></pre>
 <ul>
 <li><p>calculate annual escapment by species and region</p></li>
 <li><p>filter for just pacific salmon (Sockeye, Chinook, Coho, Pink, Chum)</p></li>

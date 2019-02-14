@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(scales)
 
 ```
 
@@ -20,7 +21,7 @@ library(ggplot2)
 
 Alaska Department of Fish and Game, Division of Commercial Fisheries. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. doi:10.5063/F1S46Q6M.
 
-```{r}
+```{r, echo=FALSE}
 esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e", method = "libcurl"), stringsAsFactors = FALSE)
 ```
 
@@ -56,7 +57,7 @@ geom_col()
 
 ```{r}
 my_theme <- theme_test() +
-  theme(legend.position = "bottom", legend.title = element_blank())
+  theme(legend.position = "bottom", legend.title = element_blank(), plot.title = element_text(hjust=0.5, color="black"))
 
 ```
 
@@ -74,8 +75,6 @@ ggplot(filter(annual_esc, SASAP.Region == "Kodiak"), aes(x = year, y = count, co
 
 ```
 
-
-
-
  
 # Generate an interactive map
+
