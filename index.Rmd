@@ -122,5 +122,8 @@ leaflet(locations) %>%
 
 ```
 
+For dyrple/tidyr reference see my [data tidying page](https://cwang2019.github.io/arctic-training/data-tiding.html)
 
-
+<br/>
+<br/>
+<br/>
