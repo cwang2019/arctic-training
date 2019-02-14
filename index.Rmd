@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, warning = FALSE, message = FALSE, echo = FALSE}
+```{r, warning = FALSE, message = FALSE, echo = F}
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -21,7 +21,7 @@ library(scales)
 
 Alaska Department of Fish and Game, Division of Commercial Fisheries. 2017. Daily salmon escapement counts from the OceanAK database, Alaska, 1921-2017. Knowledge Network for Biocomplexity. doi:10.5063/F1S46Q6M.
 
-```{r, echo=FALSE}
+```{r, echo = F}
 esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auuid%3Af119a05b-bbe7-4aea-93c6-85434dcb1c5e", method = "libcurl"), stringsAsFactors = FALSE)
 ```
 
@@ -29,7 +29,7 @@ esc <- read.csv(url("https://knb.ecoinformatics.org/knb/d1/mn/v2/object/urn%3Auu
 
 * filter for just pacific salmon (Sockeye, Chinook, Coho, Pink, Chum)
 
-```{r}
+```{r, echo = F}
 annual_esc <- esc %>%
     separate(sampleDate, into = c("year", "month", "day"), sep ="-") %>% 
     mutate(year = as.numeric(year)) %>% 
@@ -47,7 +47,7 @@ head(annual_esc)
 
 # Genberate some static plots
 
-```{r}
+```{r, echo = F}
 #ggplot(annual_esc) + geom_col(mapping = aes(x = Species, y = count), fill = "light yellow")
 
 ggplot(annual_esc, mapping = aes(x = Species, y = count, fill = SASAP.Region)) + #scale_fill_brewer(palette = "Dark2") +
@@ -55,7 +55,7 @@ geom_col()
 
 ```
 
-```{r}
+```{r, echo = F}
 my_theme <- theme_test() +
   theme(legend.position = "bottom", legend.title = element_blank(), plot.title = element_text(hjust=0.5, color="black"))
 
@@ -63,7 +63,7 @@ my_theme <- theme_test() +
 
 
 
-```{r}
+```{r, echo = F}
 ggplot(filter(annual_esc, SASAP.Region == "Kodiak"), aes(x = year, y = count, color = Species)) + geom_line()+
   geom_point() +
   ylab("Escapement (num of fish)") +
@@ -72,6 +72,22 @@ ggplot(filter(annual_esc, SASAP.Region == "Kodiak"), aes(x = year, y = count, co
   theme_test() +
   my_theme
 
+
+```
+```{r, fig.width = 7, fig.height = 8, echo = F}
+p <- ggplot(annual_esc, aes(x = year, y = count, color = Species)) + geom_line() +
+  geom_line() +
+  geom_point() +
+  scale_y_continuous(label = comma) +
+  facet_wrap(~SASAP.Region, scales = "free_y", ncol = 2) +
+  my_theme
+p
+
+ggsave("figures/regional_escapement.png",
+       plot = p,
+       width = 7,
+       height = 8,
+       units = "in")
 
 ```
 
